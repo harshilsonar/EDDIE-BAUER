@@ -6,10 +6,25 @@ import { CgProfile } from "react-icons/cg";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { GiHummingbird } from "react-icons/gi";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+
 
 
  function Navbar() {
+
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    const query = e.target.value;
+    if (query) {
+      // URL mein search query ko add karenge
+      navigate(`/${window.location.pathname.split('/')[1]}?search=${query}`);
+    } else {
+      // Agar search empty ho, toh search ko reset karenge
+      navigate(`/${window.location.pathname.split('/')[1]}`);
+    }
+  }
     return (
       <div className="w-full">
        <div className="fixed top-0 left-0 w-full bg-gray-800 text-white text-sm flex justify-between items-center px-6 py-2 z-50">
@@ -46,11 +61,12 @@ import { Link } from 'react-router-dom';
       <div className="fixed top-[35px] left-0 w-full bg-white z-40 shadow border-b">
         <div className="grid grid-cols-3 items-center px-6 py-4 gap-4">
           <div className="flex items-center gap-2">
-            <input
-              type="text"
-              placeholder="Search"
-              className="border-b border-gray-400 focus:outline-none w-full py-1 px-2"
-            />
+          <input
+          type="text"
+          placeholder="Search products..."
+          onChange={handleSearch}
+          className="border-b border-gray-400 focus:outline-none w-64 py-1 px-2"
+        />
             <FaSearch className="text-gray-600" />
           </div>
 
@@ -65,8 +81,8 @@ import { Link } from 'react-router-dom';
 
           <div className="flex justify-end">
             <div className="text-sm text-gray-700 flex flex-col items-center">
-              <IoBag className="text-xl" />
-              <span>Bag</span>
+             <Link to={'/Cart'}> <IoBag className="text-xl" />
+              <span>Bag</span></Link>
             </div>
           </div>
         </div>
@@ -648,6 +664,7 @@ import { Link } from 'react-router-dom';
 
     );
   }
+
   
 
 export default Navbar
