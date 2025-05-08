@@ -2,35 +2,35 @@
   "Best-seller": [
     {
       "id": "1",
-      "image": "https://assets.eddiebauer.com/match/mName/D0332534_100C1/13302797?preset=328",
+      "mainImage": "https://assets.eddiebauer.com/match/mName/D0332534_100C1/13302797?preset=328",
       "title": "Men's Legend Wash 100% Cotton Short-Sleeve Classic T-Shirt",
       "price": 28,
       "offer": "Buy 2 Save 10%, Buy 3 Save 20%, Buy 4+ Save 30%"
     },
     {
       "id": "2",
-      "image": "https://assets.eddiebauer.com/match/mName/D0097303_500C1/20902475?preset=328",
+      "mainImage": "https://assets.eddiebauer.com/match/mName/D0097303_500C1/20902475?preset=328",
       "title": "Women's Favorite Short-Sleeve Crewneck T-Shirt",
       "price": 25,
       "offer": "Buy 2 Save 10%, Buy 3 Save 20%, Buy 4+ Save 30%"
     },
     {
       "id": "3",
-      "image": "https://assets.eddiebauer.com/match/mName/D0097327_500C1/20902476?preset=328",
+      "mainImage": "https://assets.eddiebauer.com/match/mName/D0097327_500C1/20902476?preset=328",
       "title": "Women's Favorite Short-Sleeve V-Neck T-Shirt",
       "price": 25,
       "offer": "Buy 2 Save 10%, Buy 3 Save 20%, Buy 4+ Save 30%"
     },
     {
       "id": "4",
-      "image": "https://assets.eddiebauer.com/match/mName/D0093027_851C1/20990725?preset=328",
+      "mainImage": "https://assets.eddiebauer.com/match/mName/D0093027_851C1/20990725?preset=328",
       "title": "Women's Legend Wash Slub Full-Zip Hoodie",
       "price": 50,
       "offer": ""
     },
     {
       "id": "5",
-      "image": "https://assets.eddiebauer.com/match/mName/D0095604_500C1/20902504?preset=328",
+      "mainImage": "https://assets.eddiebauer.com/match/mName/D0095604_500C1/20902504?preset=328",
       "title": "Women's Favorite Long-Sleeve Crewneck T-Shirt",
       "price": 30,
       "offer": "Buy 2 Save 10%, Buy 3 Save 20%, Buy 4+ Save 30%"
@@ -3383,19 +3383,5 @@
       "tags": []
     }
   ],
-  "cart": [
-    {
-      "id": "9f46",
-      "productId": "112",
-      "type": "women",
-      "title": "Women's Boyfriend Rolled Denim Shorts - Relaxed Fit",
-      "price": "42.00",
-      "mainImage": "https://assets.eddiebauer.com/match/mName/D0112029_285C1/21117092?preset=328",
-      "color": "Default",
-      "size": "S",
-      "fit": "Regular",
-      "quantity": 4,
-      "totalPrice": 42
-    }
-  ]
+  "cart": []
 }

@@ -149,11 +149,12 @@ const Home = () => {
               key={item.id}
               className="bg-white rounded-2xl shadow-lg overflow-hidden p-4"
             >
-              <img
-                src={item.image}
+          <Link to={`/product/Best-seller/${item.id}`}><img
+                src={item.mainImage}
                 alt={item.title}
                 className="w-full h-64 object-cover rounded-lg"
-              />
+              /> </Link>
+             
               <div className="mt-4 space-y-2">
                 <h2 className=" font-semibold text-gray-800">{item.title}</h2>
                 <p className="text-xl  text-gray-10">
