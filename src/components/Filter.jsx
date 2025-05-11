@@ -19,55 +19,44 @@ const Filter = ({ filters, setFilters }) => {
     };
   
     return (
-      <div className="w-full sm:w-1/4 mb-6 sm:mb-0 sm:pr-4 mt-0">
-        <div className=" p-4   space-y-4">
-          {/* Main dropdown */}
-          <div>
-            <h3 className="font-semibold mb-2">Filters</h3>
-            <div className="relative">
-              <select className="block w-full  p-2 rounded-md" defaultValue="">
-                <option value="" disabled>Select Filter</option>
-                <option value="gender">Gender</option>
-                <option value="price">Price</option>
-              </select>
-            </div>
-  
-            {/* Gender Dropdown */}
-            <div className="mt-4">
-              <h3 className="font-semibold mb-2">Gender</h3>
-              <div className="relative">
-                <select
-                  className="block w-full  p-2 rounded-md"
-                  onChange={(e) => handleCheckboxChange('gender', e.target.value)}
-                  defaultValue=""
-                >
-                  <option value="" disabled>Select Gender</option>
-                  {genders.map(gender => (
-                    <option key={gender} value={gender}>{gender}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-  
-            {/* Price Dropdown */}
-            <div className="mt-4">
-              <h3 className="font-semibold mb-2">Price</h3>
-              <div className="relative">
-                <select
-                  className="block w-full  p-2 rounded-md"
-                  onChange={(e) => handleCheckboxChange('price', e.target.value)}
-                  defaultValue=""
-                >
-                  <option value="" disabled>Select Price Range</option>
-                  {prices.map(price => (
-                    <option key={price.value} value={price.value}>{price.label}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          </div>
+      <div className="w-full mb-6">
+      <div className="bg-white p-4 space-y-4">
+        {/* Title - matches Eddie Bauer style */}
+        <h3 className="text-lg font-bold uppercase tracking-wider">Filters</h3>
+        
+        {/* Gender Section - now as dropdown */}
+        <div>
+          <h4 className="text-sm font-semibold uppercase mb-2">Gender</h4>
+          <select
+            className="block w-full p-2 border border-gray-300 rounded-md text-sm"
+            onChange={(e) => handleCheckboxChange('gender', e.target.value)}
+            defaultValue=""
+          >
+            <option value="" disabled>Select Gender</option>
+            {genders.map(gender => (
+              <option key={gender} value={gender}>{gender}</option>
+            ))}
+          </select>
         </div>
+    
+        {/* Price Section - dropdown */}
+        <div>
+          <h4 className="text-sm font-semibold uppercase mb-2">Price</h4>
+          <select
+            className="block w-full p-2 border border-gray-300 rounded-md text-sm"
+            onChange={(e) => handleCheckboxChange('price', e.target.value)}
+            defaultValue=""
+          >
+            <option value="" disabled>Select Price Range</option>
+            {prices.map(price => (
+              <option key={price.value} value={price.value}>{price.label}</option>
+            ))}
+          </select>
+        </div>
+    
+       
       </div>
+    </div>
     );
   };
   

@@ -3383,5 +3383,19 @@
       "tags": []
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "id": "02d5",
+      "productId": "43",
+      "type": "jackets",
+      "title": "Women's Rainfoil® Storm Waterproof Jacket",
+      "price": "109.00",
+      "mainImage": "https://assets.eddiebauer.com/match/mName/D0062223_553C1/20656828?preset=328",
+      "color": "Default",
+      "size": "M",
+      "fit": "Regular",
+      "quantity": 1,
+      "totalPrice": 109
+    }
+  ]
 }

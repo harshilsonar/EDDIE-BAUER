@@ -110,8 +110,8 @@ export const Footer = () => {
         <div className="ms-3">
           <h4 className="font-bold mb-3">BE THE FIRST TO KNOW</h4>
           <p className="mb-2">Earn rewards and be the first to hear about sales and special offers.</p>
-       <Link part='Top' >  <button className="px-6 py-2 bg-black text-white border-2 border-black hover:bg-white hover:text-black transition">
-            SHOP NOW
+       <Link to={'signup'} >  <button className="px-6 py-2 bg-black text-white border-2 border-black hover:bg-white hover:text-black transition">
+            SIGN UP
           </button></Link>
           <div className="flex space-x-3 text-xl mt-6">
             <FaFacebookF />

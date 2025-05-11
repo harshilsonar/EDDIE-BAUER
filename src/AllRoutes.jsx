@@ -9,12 +9,20 @@ import Tshirts from './pages/Tshirts';
 import Swim from './pages/Swim';
 import ProductDetails from './components/ProductDetails';
 import Cart from './components/Cart';
+import Signup from './pages/Signup';
+import PrivateRoute from './components/PrivateRoute';
 
 function AllRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/topseller/" element={<Topseller/>} />
+ <Route
+        path="/"
+        element={
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        }
+      />      <Route path="/topseller/" element={<Topseller/>} />
       <Route path="/shopmen/" element={<Shopmen/>} />
       <Route path="/shopwomen/" element={<Shopwomen/>} />
       <Route path="/jacket/" element={<Jackets/>} />
@@ -23,6 +31,7 @@ function AllRoutes() {
       <Route path="/swim/" element={<Swim/>} />
       <Route path="/product/:type/:id" element={<ProductDetails />} />
       <Route path="/cart" element={<Cart/>} />
+      <Route path='/signup' element={<Signup/>}/>
     </Routes>
   );
 }
