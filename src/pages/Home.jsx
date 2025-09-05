@@ -10,7 +10,7 @@ const Home = () => {
   const fetchProduct = () => {
     setloading(true);
     seterror(null);
-    axios.get(`http://localhost:3000/Best-seller`)
+    axios.get(`https://mock-eddie.onrender.com/Best-seller`)
       .then((response) => {
         setproduct(response.data); // ✅ correct use
         setloading(false);

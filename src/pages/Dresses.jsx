@@ -20,7 +20,7 @@ const Dresses = () => {
   const fetchProduct = () => {
     setLoading(true);
     setError(null);
-    axios.get(`http://localhost:3000/Dresses`)
+    axios.get(`https://mock-eddie.onrender.com/Dresses`)
       .then((response) => {
         const updated = response.data.map(item => ({
           ...item,

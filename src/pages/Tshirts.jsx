@@ -16,7 +16,7 @@ const Tshirts = () => {
   const fetchProduct = () => {
     setLoading(true);
     setError(null);
-    axios.get('http://localhost:3000/T-shirt')
+    axios.get('https://mock-eddie.onrender.com/T-shirt')
       .then((response) => {
         const updated = response.data.map(item => ({
           ...item,

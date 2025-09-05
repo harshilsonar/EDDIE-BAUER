@@ -17,7 +17,7 @@ const Cart = () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get('http://localhost:3000/cart');
+      const res = await axios.get('https://mock-eddie.onrender.com/cart');
       const items = Array.isArray(res.data) ? res.data : [];
       setCartItems(items);
     } catch (err) {

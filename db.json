@@ -3385,16 +3385,42 @@
   ],
   "cart": [
     {
-      "id": "02d5",
-      "productId": "43",
-      "type": "jackets",
-      "title": "Women's Rainfoil® Storm Waterproof Jacket",
-      "price": "109.00",
-      "mainImage": "https://assets.eddiebauer.com/match/mName/D0062223_553C1/20656828?preset=328",
+      "id": "15c5",
+      "productId": "72",
+      "type": "Dresses",
+      "title": "Women's Woven Texture Dress",
+      "price": "80.00",
+      "mainImage": "https://assets.eddiebauer.com/match/mName/D0170248_529C1/21708190?preset=328",
+      "color": "Default",
+      "size": "M",
+      "fit": "Regular",
+      "quantity": 4,
+      "totalPrice": 80
+    },
+    {
+      "id": "2cf5",
+      "productId": "41",
+      "type": "Topselling",
+      "title": "Men's Ultimate Voyager Travel Blazer",
+      "price": "89.99",
+      "mainImage": "https://assets.eddiebauer.com/match/mName/D0340504_123C1/13401821?preset=328",
       "color": "Default",
       "size": "M",
       "fit": "Regular",
       "quantity": 1,
+      "totalPrice": 89.99
+    },
+    {
+      "id": "6a5e",
+      "productId": "43",
+      "type": "jackets",
+      "title": "Women's Rainfoil® Storm Waterproof Jacket",
+      "price": "109.00",
+      "mainImage": "https://assets.eddiebauer.com/match/mName/D0062223_150C1/20656828?preset=swatch",
+      "color": "Color 1",
+      "size": "S",
+      "fit": "Regular",
+      "quantity": 3,
       "totalPrice": 109
     }
   ]

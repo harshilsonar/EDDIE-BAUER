@@ -148,7 +148,7 @@ const ProductDetail = () => {
       totalPrice: (data.price || data.priceSale) * quantity
     };
   
-    axios.get(`http://localhost:3000/cart`)
+    axios.get(`https://backend-server-bisr.onrender.com `)
       .then(res => {
         const existingItem = res.data.find(item =>
           item.productId === cartItem.productId &&
@@ -159,7 +159,7 @@ const ProductDetail = () => {
   
         if (existingItem) {
           const updatedQuantity = existingItem.quantity + cartItem.quantity;
-          return axios.patch(`http://localhost:3000/cart/${existingItem.id}`, {
+          return axios.patch(`https://backend-server-bisr.onrender.com/${existingItem.id}`, {
             quantity: updatedQuantity,
             totalPrice: updatedQuantity * existingItem.price
           });

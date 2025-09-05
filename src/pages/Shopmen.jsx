@@ -18,7 +18,7 @@ const Shopmen = () => {
        const fetchProduct = () => {
          setloading(true);
          seterror(null);
-         axios.get(`http://localhost:3000/men`)
+         axios.get(`https://mock-eddie.onrender.com/men`)
            .then((response) => {
             const updated = response.data.map(item => ({
               ...item,

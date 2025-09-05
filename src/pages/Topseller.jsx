@@ -18,7 +18,7 @@ const Topseller = () => {
     setLoading(true);
     setError(null);
     axios
-      .get('http://localhost:3000/Topselling')
+      .get('https://mock-eddie.onrender.com/Topselling')
       .then((response) => {
         const updated = response.data.map((item) => ({
           ...item,
