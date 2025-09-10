@@ -3,68 +3,68 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 const ProductDetail = () => {
-  const { type, id } = useParams();
+const { type, id } = useParams();
   const navigate = useNavigate();
+
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedFit, setSelectedFit] = useState("Regular");
+  const [selectedSize, setSelectedSize] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [addingToCart, setAddingToCart] = useState(false);
 
-  const handleSwatchClick = (swatchUrl) => {
-    setSelectedImage(swatchUrl);
-  };
+  const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
-  const [selectedSize, setSelectedSize] = useState(null);
-  const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];  
-  
+  // Fetch product data
   useEffect(() => {
     setLoading(true);
     setError(null);
-    
-    // Main product data fetch
-    axios.get(`http://localhost:3000/${type}/${id}`)
-      .then(res => {
-        // Process the data to organize images by color if available
-        let processedData = {...res.data};
-        
-        // If the API doesn't provide color-specific images, we'll create a structure for them
+
+    axios
+      .get(`https://mock-eddie.onrender.com/${type}/${id}`)
+      .then((res) => {
+        let processedData = { ...res.data };
+
+        // If colorImages not provided, create structure
         if (!processedData.colorImages) {
           processedData.colorImages = {};
-          
-          // If there's color-specific data in the response, try to organize it
           if (processedData.colors) {
-            processedData.colors.forEach(color => {
+            processedData.colors.forEach((color) => {
               if (color.images) {
                 processedData.colorImages[color.id || color.name] = color.images;
               }
             });
           }
         }
-        
+
         setData(processedData);
-        setSelectedImage(processedData.images?.[0] || processedData.mainImage);
-        
-        // Set the initial selected color
-        if (processedData.swatches && processedData.swatches.length > 0) {
+        setSelectedImage(
+          processedData.images?.[0] || processedData.mainImage || ""
+        );
+
+        // Set initial color
+        if (processedData.swatches?.length > 0) {
           setSelectedColor(processedData.swatches[0]);
-        } else if (processedData.colors && processedData.colors.length > 0) {
+        } else if (processedData.colors?.length > 0) {
           setSelectedColor(processedData.colors[0]);
         }
-        
-        // Use default color if specified
+
+        // Use default color if provided
         if (processedData.defaultColor) {
-          const defaultSwatch = (processedData.swatches || processedData.colors || []).find(
-            swatch => swatch.name === processedData.defaultColor || swatch.id === processedData.defaultColor
+          const defaultSwatch = (
+            processedData.swatches || processedData.colors || []
+          ).find(
+            (swatch) =>
+              swatch.name === processedData.defaultColor ||
+              swatch.id === processedData.defaultColor
           );
-          if (defaultSwatch) {
-            setSelectedColor(defaultSwatch);
-          }
+          if (defaultSwatch) setSelectedColor(defaultSwatch);
         }
-        
+
         setLoading(false);
       })
       .catch((err) => {
@@ -74,40 +74,30 @@ const ProductDetail = () => {
       });
   }, [type, id]);
 
-  // Improved color change handler
+  // Handle color change
   const handleColorChange = (swatch) => {
     setSelectedColor(swatch);
-    
-    // Check if we need to make an API call or if we can use existing data
-    // First, let's immediately show the swatch's image if it has one
+
     if (swatch.imageUrl) {
       setSelectedImage(swatch.imageUrl);
     }
-    
-    // Try to find images specific to this color in the data we already have
+
     if (data.colorImages && data.colorImages[swatch.id || swatch.name]) {
-      setData(prevData => ({
-        ...prevData, 
-        images: data.colorImages[swatch.id || swatch.name]
-      }));
-      // Update the selected image to the first image of the new color
-      if (data.colorImages[swatch.id || swatch.name].length > 0) {
-        setSelectedImage(data.colorImages[swatch.id || swatch.name][0]);
+      const colorImgs = data.colorImages[swatch.id || swatch.name];
+      setData((prevData) => ({ ...prevData, images: colorImgs }));
+      if (colorImgs.length > 0) {
+        setSelectedImage(colorImgs[0]);
       }
-      return; // No need for API call if we already have the images
+      return;
     }
-    
-    // If we don't have the images for this color already, show loading indicator
+
     setLoading(true);
-    
-    // Check if the API endpoint for color-specific images exists
-    axios.get(`http://localhost:3000/${type}/${id}`)
-      .then(res => {
-        // If the product has images for this color or a default set of images
+
+    axios
+      .get(`https://mock-eddie.onrender.com/${type}/${id}`)
+      .then((res) => {
         if (res.data.images) {
-          // Update the data with all images
-          setData(prevData => ({...prevData, images: res.data.images}));
-          // Update the selected image
+          setData((prevData) => ({ ...prevData, images: res.data.images }));
           if (res.data.images.length > 0) {
             setSelectedImage(res.data.images[0]);
           }
@@ -116,8 +106,7 @@ const ProductDetail = () => {
       })
       .catch((err) => {
         console.log("Failed to load product images:", err);
-        // Even if the API call fails, let's try to use what we have
-        if (data.images && data.images.length > 0) {
+        if (data.images?.length > 0) {
           setSelectedImage(data.images[0]);
         } else if (data.mainImage) {
           setSelectedImage(data.mainImage);
@@ -125,59 +114,61 @@ const ProductDetail = () => {
         setLoading(false);
       });
   };
-  
-  // Function to add item to cart
+
+  // Add to cart
   const addToCart = () => {
     if (!selectedSize) {
       alert("Please select a size first");
       return;
     }
-  
+
     setAddingToCart(true);
-  
+
     const cartItem = {
       productId: id,
       type,
       title: data.title,
       price: data.price || data.priceSale,
       mainImage: selectedImage || data.mainImage,
-      color: selectedColor?.name || data.defaultColor || 'Default',
+      color: selectedColor?.name || data.defaultColor || "Default",
       size: selectedSize,
       fit: selectedFit,
       quantity,
-      totalPrice: (data.price || data.priceSale) * quantity
+      totalPrice: (data.price || data.priceSale) * quantity,
     };
-  
-    axios.get(`https://backend-server-bisr.onrender.com `)
-      .then(res => {
-        const existingItem = res.data.find(item =>
-          item.productId === cartItem.productId &&
-          item.selectedColor === cartItem.color &&
-          item.size === cartItem.size &&
-          item.fit === cartItem.fit
+
+    axios
+      .get("https://mock-eddie.onrender.com/cart")
+      .then((res) => {
+        const existingItem = res.data.find(
+          (item) =>
+            item.productId === cartItem.productId &&
+            item.color === cartItem.color &&
+            item.size === cartItem.size &&
+            item.fit === cartItem.fit
         );
-  
+
         if (existingItem) {
           const updatedQuantity = existingItem.quantity + cartItem.quantity;
-          return axios.patch(`https://backend-server-bisr.onrender.com/${existingItem.id}`, {
+          return axios.patch(`http://localhost:3000/cart/${existingItem.id}`, {
             quantity: updatedQuantity,
-            totalPrice: updatedQuantity * existingItem.price
+            totalPrice: updatedQuantity * existingItem.price,
           });
         } else {
-          return axios.post(`http://localhost:3000/cart`, cartItem);
+          return axios.post("http://localhost:3000/cart", cartItem);
         }
       })
       .then(() => {
         alert("Item added to cart");
       })
-      .catch(err => {
+      .catch((err) => {
         console.error("Failed to add to cart:", err);
         alert("Failed to add to cart");
       })
       .finally(() => {
         setAddingToCart(false);
       });
-  };
+    }
 
   // Loading and error states
   if (loading && !data) return <p className="text-center py-10">Loading...</p>;
